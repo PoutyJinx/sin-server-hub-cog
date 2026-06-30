@@ -1,0 +1,7 @@
+{
+  "author": ["PoutyJinx", "OpenAI"],
+  "description": "SIN Corp Server Hub cog for Red-DiscordBot.",
+  "install_msg": "Use `[p]cog install sin-server-hub-cog sinserverhub`, then `[p]load sinserverhub`.",
+  "short": "SIN Corp Server Hub",
+  "end_user_data_statement": "This repository contains Red-DiscordBot cogs. See each cog's info.json for end user data statements."
+}

@@ -1,0 +1,10 @@
+{
+  "author": ["PoutyJinx", "OpenAI"],
+  "description": "SIN Corp Server Hub: manage game server info, workshop links, notes, passwords, and restart pings with prefix and slash commands.",
+  "install_msg": "Thanks for installing SIN Server Hub. Load it with `[p]load sinserverhub`, then enable slash commands with `[p]slash enablecog sinserverhub` and `[p]slash sync`.",
+  "short": "SIN Corp game server information board.",
+  "end_user_data_statement": "This cog stores server information configured by moderators per Discord server. It does not store personal user data.",
+  "min_bot_version": "3.5.0",
+  "requirements": [],
+  "tags": ["server", "gaming", "sin", "slash", "redbot"]
+}
