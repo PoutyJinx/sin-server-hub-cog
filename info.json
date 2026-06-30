@@ -1,0 +1,11 @@
+{
+  "author": ["PoutyJinx", "OpenAI"],
+  "install_msg": "Thank you for installing SIN Server Hub. Load it with `[p]load sinserverhub`, then enable slash commands with `[p]slash enablecog sinserverhub` and `[p]slash sync`.",
+  "name": "sin-server-hub-cog",
+  "short": "SIN Corp game server hub for Red-DiscordBot.",
+  "description": "A Red-DiscordBot cog for showing game server info, status, IP, password, workshop links, notes, join instructions, and restart pings.",
+  "tags": ["server", "gaming", "slash", "redbot", "sincorp"],
+  "requirements": [],
+  "min_bot_version": "3.5.0",
+  "end_user_data_statement": "This cog stores manually entered server information per guild, including server names, IPs, passwords, links, notes, and configured role/channel IDs. No personal user data is stored."
+}

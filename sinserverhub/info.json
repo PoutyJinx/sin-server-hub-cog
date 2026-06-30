@@ -1,0 +1,11 @@
+{
+  "author": ["PoutyJinx", "OpenAI"],
+  "install_msg": "SIN Server Hub loaded. Use `[p]sinserver show` or `/server show`.",
+  "name": "SinServerHub",
+  "short": "Game server hub with slash commands.",
+  "description": "Manage and display current game server information with moderator-only setup commands and restart role pings.",
+  "tags": ["server", "gaming", "slash", "redbot", "sincorp"],
+  "requirements": [],
+  "min_bot_version": "3.5.0",
+  "end_user_data_statement": "This cog stores manually entered server information per guild, including server names, IPs, passwords, links, notes, and configured role/channel IDs. No personal user data is stored."
+}
