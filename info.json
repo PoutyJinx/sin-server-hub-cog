@@ -1,0 +1,9 @@
+{
+  "author": [
+    "PoutyJinx",
+    "OpenAI"
+  ],
+  "install_msg": "Thanks for installing SIN Server Hub. Use `[p]cog install sin-server-hub-cog sinserverhub` then `[p]load sinserverhub`. v4 uses cleaner slash edit subcommands.",
+  "short": "SIN Corp game server info hub.",
+  "description": "Red-DiscordBot cog for sharing game server status, IPs, passwords, workshop links, notes, join instructions, restart alerts, and cleaner slash edit commands."
+}

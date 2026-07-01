@@ -1,0 +1,19 @@
+{
+  "author": [
+    "PoutyJinx",
+    "OpenAI"
+  ],
+  "install_msg": "SIN Server Hub installed. Load it with `[p]load sinserverhub`, then run `[p]slash sync`. Slash command is `/server`. v4 uses cleaner slash edit subcommands.",
+  "name": "sinserverhub",
+  "short": "SIN Corp game server info hub.",
+  "description": "Red-DiscordBot cog for sharing game server status, IPs, passwords, workshop links, notes, join instructions, restart alerts, and cleaner slash edit commands.",
+  "tags": [
+    "server",
+    "gaming",
+    "slash",
+    "sincorp"
+  ],
+  "requirements": [],
+  "min_bot_version": "3.5.0",
+  "end_user_data_statement": "This cog stores server board configuration per Discord server only."
+}
