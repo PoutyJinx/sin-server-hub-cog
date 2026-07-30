@@ -112,6 +112,8 @@ class SinServerHub(commands.Cog):
         embed.add_field(name="🎮 Game", value=data.get("game") or "Not set", inline=True)
         embed.add_field(name="🏷️ Server Name", value=data.get("name") or key, inline=True)
         embed.add_field(name="📡 Status", value=f"{emoji} {status.title()}", inline=True)
+        if data.get("uptime"):
+            embed.add_field(name="⏰ Planned Uptime", value=str(data["uptime"])[:1024], inline=False)
         if data.get("ip"):
             embed.add_field(name="🌍 IP / Address", value=f"`{data['ip']}`", inline=False)
         if data.get("password"):
@@ -214,11 +216,12 @@ class SinServerHub(commands.Cog):
         status: Optional[str] = "unknown",
         slots: Optional[str] = None,
         workshop: Optional[str] = None,
+        uptime: Optional[str] = None,
         *,
         notes: Optional[str] = None,
     ):
         """Create or replace a server. Use quotes around values with spaces."""
-        key = await self._save_update(ctx.guild, ctx.author, key, game=game, name=server_name, ip=ip, password=password, status=self._clean_status(status), slots=slots, workshop=workshop, notes=notes)
+        key = await self._save_update(ctx.guild, ctx.author, key, game=game, name=server_name, ip=ip, password=password, status=self._clean_status(status), slots=slots, workshop=workshop, uptime=uptime, notes=notes)
         await self.config.guild(ctx.guild).active_server.set(key)
         await ctx.send(f"✅ SIN Corp server `{key}` saved and set as active.")
 
@@ -226,10 +229,10 @@ class SinServerHub(commands.Cog):
     @commands.mod_or_permissions(manage_guild=True)
     async def edit_prefix(self, ctx: commands.Context, key: str, field: str, *, value: str):
         """Edit one field. Fields: game, name, ip, password, status, slots, workshop, notes, join, thumbnail."""
-        allowed = {"game", "name", "server_name", "ip", "password", "status", "slots", "workshop", "notes", "join", "thumbnail"}
+        allowed = {"game", "name", "server_name", "ip", "password", "status", "slots", "workshop", "uptime", "notes", "join", "thumbnail"}
         field = field.lower()
         if field not in allowed:
-            await ctx.send("Field must be one of: `game, name, ip, password, status, slots, workshop, notes, join, thumbnail`.")
+            await ctx.send("Field must be one of: `game, name, ip, password, status, slots, workshop, uptime, notes, join, thumbnail`.")
             return
         if field == "server_name":
             field = "name"
@@ -334,6 +337,7 @@ class SinServerHub(commands.Cog):
         status="Current manual status.",
         player_slots="Player slots, for example 16 or 32.",
         workshop_link="Steam Workshop, modpack, collection, or download link.",
+        uptime="Manual planned uptime, for example 17:00 to 02:00 CET.",
         notes="Extra notes shown on the server board.",
     )
     @app_commands.choices(status=STATUS_CHOICES)
@@ -348,6 +352,7 @@ class SinServerHub(commands.Cog):
         status: Optional[str] = "unknown",
         player_slots: Optional[str] = None,
         workshop_link: Optional[str] = None,
+        uptime: Optional[str] = None,
         notes: Optional[str] = None,
     ):
         if not await self._slash_mod_check(interaction):
@@ -363,6 +368,7 @@ class SinServerHub(commands.Cog):
             status=self._clean_status(status),
             slots=player_slots,
             workshop=workshop_link,
+            uptime=uptime,
             notes=notes,
         )
         await self.config.guild(interaction.guild).active_server.set(key)
@@ -419,6 +425,12 @@ class SinServerHub(commands.Cog):
     @app_commands.autocomplete(server=_server_key_autocomplete)
     async def slash_edit_workshop(self, interaction: discord.Interaction, server: str, workshop_link: str):
         await self._slash_edit_response(interaction, server, "workshop", workshop_link, "Workshop / Modpack")
+
+    @edit_slash.command(name="uptime", description="Change the planned uptime schedule. Mods only.")
+    @app_commands.describe(server="Saved server to edit.", uptime="Manual uptime, for example 17:00 to 02:00 CET. Use none to clear it.")
+    @app_commands.autocomplete(server=_server_key_autocomplete)
+    async def slash_edit_uptime(self, interaction: discord.Interaction, server: str, uptime: str):
+        await self._slash_edit_response(interaction, server, "uptime", uptime, "Planned Uptime")
 
     @edit_slash.command(name="notes", description="Change the notes shown on the server board. Mods only.")
     @app_commands.describe(server="Saved server to edit.", notes="New notes text. Use none to clear it.")
